@@ -277,3 +277,12 @@ header p {
         text-align: center;
     }
 }
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    animation: fadeInUp 0.8s ease-out;
+}
