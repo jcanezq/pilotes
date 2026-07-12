@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Cimentaciones con Pilotes</title>
+    <meta name="description" content="Aplicación web interactiva para calcular la capacidad de carga de pilotes en arcilla y arena.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js for Graphics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <h1>Cálculo de Cimentaciones con Pilotes</h1>
+            <p>Estimación de capacidad de carga en arcilla y arena</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-target="arcilla">Arcilla (Método Alfa)</button>
+            <button class="tab-btn" data-target="enr">Fórmula ENR</button>
+            <button class="tab-btn" data-target="spt">Arena (SPT Meyerhof)</button>
+        </div>
+
+        <div class="glass-panel">
+            <!-- Formulario Arcilla -->
+            <form id="form-arcilla" class="tab-content active">
+                <div class="input-group">
+                    <label for="arc-dia">Diámetro del pilote (m):</label>
+                    <input type="number" id="arc-dia" step="0.01" value="0.5" required>
+                </div>
+                <div class="input-group">
+                    <label for="arc-lon">Longitud del pilote (m):</label>
+                    <input type="number" id="arc-lon" step="0.01" value="15" required>
+                </div>
+                <div class="input-group">
+                    <label for="arc-cu">Cohesión cu (kN/m²):</label>
+                    <input type="number" id="arc-cu" step="0.01" value="50" required>
+                </div>
+                <div class="input-group">
+                    <label for="arc-alpha">Factor de adhesión alfa:</label>
+                    <input type="number" id="arc-alpha" step="0.01" value="0.8" required>
+                </div>
+                <button type="submit" class="btn-calcular">Calcular Capacidad</button>
+            </form>
+
+            <!-- Formulario ENR -->
+            <form id="form-enr" class="tab-content">
+                <div class="input-group">
+                    <label for="enr-e">Eficiencia del martinete (E):</label>
+                    <input type="number" id="enr-e" step="0.01" value="0.8" required>
+                </div>
+                <div class="input-group">
+                    <label for="enr-wr">Peso del ariete W_R (kN):</label>
+                    <input type="number" id="enr-wr" step="0.01" value="30" required>
+                </div>
+                <div class="input-group">
+                    <label for="enr-h">Altura de caída h (mm):</label>
+                    <input type="number" id="enr-h" step="0.01" value="1000" required>
+                </div>
+                <div class="input-group">
+                    <label for="enr-s">Penetración S (mm):</label>
+                    <input type="number" id="enr-s" step="0.01" value="5" required>
+                </div>
+                <div class="input-group">
+                    <label for="enr-c">Constante C (mm):</label>
+                    <input type="number" id="enr-c" step="0.01" value="2.54" required>
+                </div>
+                <div class="input-group">
+                    <label for="enr-n">Restitución n:</label>
+                    <input type="number" id="enr-n" step="0.01" value="0.5" required>
+                </div>
+                <div class="input-group">
+                    <label for="enr-wp">Peso del pilote W_p (kN):</label>
+                    <input type="number" id="enr-wp" step="0.01" value="20" required>
+                </div>
+                <button type="submit" class="btn-calcular">Calcular Capacidad</button>
+            </form>
+
+            <!-- Formulario SPT -->
+            <form id="form-spt" class="tab-content">
+                <div class="input-group">
+                    <label for="spt-dia">Diámetro del pilote (m):</label>
+                    <input type="number" id="spt-dia" step="0.01" value="0.6" required>
+                </div>
+                <div class="input-group">
+                    <label for="spt-lon">Longitud del pilote (m):</label>
+                    <input type="number" id="spt-lon" step="0.01" value="20" required>
+                </div>
+                <div class="input-group">
+                    <label for="spt-pa">Presión atmosférica pa (kN/m²):</label>
+                    <input type="number" id="spt-pa" step="0.01" value="100" required>
+                </div>
+                <div class="input-group">
+                    <label for="spt-n60">N60 promedio:</label>
+                    <input type="number" id="spt-n60" step="0.01" value="25" required>
+                </div>
+                <button type="submit" class="btn-calcular">Calcular Capacidad</button>
+            </form>
+        </div>
+
+        <!-- Resultados y Gráficas -->
+        <section id="resultados-section" class="glass-panel hidden">
+            <h2>Resultados</h2>
+            <div class="resultados-grid">
+                <div class="texto-resultados">
+                    <pre id="txt-resultados">Los resultados aparecerán aquí.</pre>
+                </div>
+                <div class="grafica-container">
+                    <canvas id="chartResultados"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
